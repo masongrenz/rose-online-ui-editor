@@ -95,6 +95,7 @@
     <Compile Include="Forms\XMLRelatedEvents.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Mouse\MouseType.cs" />
     <Compile Include="RoseControls\Button.cs" />
     <Compile Include="RoseControls\CheckBox.cs" />
     <Compile Include="RoseControls\ComboBox.cs" />

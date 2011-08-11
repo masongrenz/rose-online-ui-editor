@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+
+
+using Rose_online_UI_Editor.Mouse;
+using Rose_online_UI_Editor.Forms;
 
 namespace Rose_online_UI_Editor.Forms.CustomControls
 {
     class XmlDockContainer : DevComponents.DotNetBar.DockContainerItem , ICustomControl
     {
-            private System.Windows.Forms.RichTextBox codeTextBox;
+        #region variables
+        private System.Windows.Forms.RichTextBox codeTextBox;
             private DevComponents.DotNetBar.PanelDockContainer codePanelDockContainer;      
-            public string XmlPath { get; set; }
+            public string xmlPath { get; set; }
+        #endregion
+            #region constructors
             public XmlDockContainer(string Name, string Text)
              {
                  this.Name = Name;
@@ -52,34 +51,47 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
 
             this.Control = codePanelDockContainer;
            }
+            #endregion
 
-           public void Load(string path)
+            #region methods
+            public void Load(string path)
            {
-               this.XmlPath = path;
-
-               using (System.IO.StreamReader sr = new System.IO.StreamReader(path))
+               try
                {
-                   this.codeTextBox.Text = sr.ReadToEnd();
-                   sr.Close();
-               }        
+                   this.xmlPath = path;
+                   using (System.IO.StreamReader sr = new System.IO.StreamReader(path))
+                   {
+                       this.codeTextBox.Text = sr.ReadToEnd();
+                       sr.Close();
+                   }
+                   StatusManager.AddLog("XML successfully loaded : \"" + path+"\"");
+               }
+                catch(Exception e)
+               {
+                   StatusManager.AddLog("XML can't be load : " + e.Message);
+               }
            }
            public void Reload()
            {
                codeTextBox.Clear();
-               Load(XmlPath);
+               Load(xmlPath);
            }                 
            public void Save()
            {
 
-               System.IO.StreamWriter sw = new System.IO.StreamWriter(XmlPath);
+               System.IO.StreamWriter sw = new System.IO.StreamWriter(xmlPath);
                this.codeTextBox.SelectAll();
                sw.Write(this.codeTextBox.Text);
                sw.Close();
            }
-       
+           public void SetMouseType(MouseType mType)
+           {
+
+           }
+            #endregion
 
         #region Events
-           
+
         #endregion
     }
 }

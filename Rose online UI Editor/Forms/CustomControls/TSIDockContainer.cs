@@ -10,21 +10,27 @@ using Rose_online_UI_Editor.Render;
 using Rose_online_UI_Editor.Content_Manager;
 using Rose_online_UI_Editor.Forms;
 using Rose_online_UI_Editor.Command_Manager;
+using Rose_online_UI_Editor.Mouse;
 
 namespace Rose_online_UI_Editor.Forms.CustomControls
 {
-    public class TSIDockContainer : DevComponents.DotNetBar.DockContainerItem, ICustomControl , IUseCommand
+    public class TSIDockContainer : DevComponents.DotNetBar.DockContainerItem, ICustomControl, IUseCommand
     {
         #region variables
         private RenderControl renderControl;
         private DevComponents.DotNetBar.PanelDockContainer codePanelDockContainer;
         private System.Windows.Forms.PropertyGrid propertyGrid;
         private string TSIPath;
-        private TSI tsi;        
+        private TSI tsi;
         private DevComponents.AdvTree.AdvTree TSItree;
         private CommandManager cmdManager;
         private int selectedDDSIndex;//DDS won't be reload if you select another element in the same DDS (logic , isn't it :D)
-
+        private SpriteFont font;
+        private Text positionText;
+        private bool resizing = false;
+        private Aera aera;
+        private Sprite dds;
+        public MouseType mouseType;
         public CommandManager getManager() { return cmdManager; }
         #endregion
 
@@ -47,6 +53,8 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
             renderControl.Size = new System.Drawing.Size(657, 423);
             renderControl.TabIndex = 0;
             renderControl.MouseMove += new MouseEventHandler(MouseMove);
+            renderControl.MouseUp += new MouseEventHandler(MouseUp);
+            renderControl.MouseDown += new MouseEventHandler(MouseDown);
 
             codePanelDockContainer = new DevComponents.DotNetBar.PanelDockContainer();
             // 
@@ -64,7 +72,17 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
             codePanelDockContainer.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             codePanelDockContainer.Style.GradientAngle = 90;
             codePanelDockContainer.TabIndex = 0;
-            this.Control = codePanelDockContainer;            
+            this.Control = codePanelDockContainer;
+
+            //mouse position render
+            font = this.renderControl.Content.Load<SpriteFont>("Arial");
+            positionText = new Text(this.renderControl.GraphicsDevice);
+            positionText.Set(0 + "," + 0, new Vector2(0, 0), font, Color.Red);
+            renderControl.AddText(positionText);
+            mouseType = MouseType.MOUSE_POINT;
+
+            renderControl.AddAera(aera);
+            renderControl.AddSprite(dds);
         }
         #endregion
 
@@ -87,7 +105,7 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
         {
             this.tsi.Save(Path);
         }
-        
+
         /// <summary>
         /// This function generate tree from the tsi file 
         /// </summary>
@@ -116,7 +134,7 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
             return tsi.listDDS[ddsIndex];
         }
 
-        public TSI.DDS.DDSElement GetSprite(int ddsIndex , int spriteIndex)
+        public TSI.DDS.DDSElement GetSprite(int ddsIndex, int spriteIndex)
         {
             return tsi.listDDS[ddsIndex].ListDDS_element[spriteIndex];
         }
@@ -138,8 +156,8 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
             }
             renderControl.ClearAeras();
         }
-        
-        public void SelectSprite(int DDSIndex , int spriteIndex)
+
+        public void SelectSprite(int DDSIndex, int spriteIndex)
         {
             propertyGrid.SelectedObject = tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex];
             if (selectedDDSIndex != DDSIndex)
@@ -150,16 +168,16 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
                 renderControl.AddSprite(DDSSprite);
             }
 
-            Rectangle rectangle = new Rectangle(this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].X, 
-                this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].Y, 
-                this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].Width, 
+            Rectangle rectangle = new Rectangle(this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].X,
+                this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].Y,
+                this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].Width,
                 this.tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex].Height);
             Aera aera = new Aera(this.renderControl.GraphicsDevice, rectangle, Color.Red);
             this.renderControl.ClearAeras();
             this.renderControl.AddAera(aera);
 
-        }             
-       
+        }
+
         /// <summary>
         ///   Add DDS called "name" in both TSI and the tree and return the index of this new DDS
         /// </summary>
@@ -178,7 +196,7 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
         /// <param name="dds">a specified dds</param>
         public int AddDDS(TSI.DDS dds, int index)
         {
-            tsi.listDDS.Insert(index,dds);
+            tsi.listDDS.Insert(index, dds);
             GenerateTree();
             return TSItree.Nodes.Count - 1;
         }
@@ -197,10 +215,10 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
         /// <summary>
         ///   Add a sprite called "spriteName" in a DDS (ref DDSIndex) at "spriteIndex"
         /// </summary>
-        public void AddSprite(string spriteName , int DDSIndex , int spriteIndex)
+        public void AddSprite(string spriteName, int DDSIndex, int spriteIndex)
         {
             tsi.listDDS[DDSIndex].ListDDS_element.Insert(spriteIndex, new TSI.DDS.DDSElement((short)DDSIndex, 0, 0, 5, 5, 0, spriteName));
-            TSItree.Nodes[DDSIndex].Nodes.Insert(spriteIndex, new DevComponents.AdvTree.Node() {Text=spriteName,Name = spriteName});
+            TSItree.Nodes[DDSIndex].Nodes.Insert(spriteIndex, new DevComponents.AdvTree.Node() { Text = spriteName, Name = spriteName });
         }
 
         /// <summary>
@@ -217,7 +235,7 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
         /// <summary>
         ///   Add "sprite" in DDS (ref DDSIndex) at "spriteIndex"
         /// </summary>
-        public void AddSprite(TSI.DDS.DDSElement sprite,int DDSIndex,int spriteIndex)
+        public void AddSprite(TSI.DDS.DDSElement sprite, int DDSIndex, int spriteIndex)
         {
             tsi.listDDS[DDSIndex].ListDDS_element.Insert(spriteIndex, sprite);
             TSItree.Nodes[DDSIndex].Nodes.Insert(spriteIndex, new DevComponents.AdvTree.Node() { Text = sprite.Name, Name = sprite.Name });
@@ -228,22 +246,22 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
         /// </summary>
         public void SetSprite(TSI.DDS.DDSElement sprite, int DDSIndex, int spriteIndex)
         {
-             tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex] = sprite;
-             TSItree.Nodes[DDSIndex].Nodes[spriteIndex].Name = sprite.Name;
-             TSItree.Nodes[DDSIndex].Nodes[spriteIndex].Text = sprite.Name;
+            tsi.listDDS[DDSIndex].ListDDS_element[spriteIndex] = sprite;
+            TSItree.Nodes[DDSIndex].Nodes[spriteIndex].Name = sprite.Name;
+            TSItree.Nodes[DDSIndex].Nodes[spriteIndex].Text = sprite.Name;
         }
 
         /// <summary>
         ///   Set "dds" at index "DDSIndex"
         /// </summary>
-        public void SetDDS(TSI.DDS dds,int DDSIndex)
+        public void SetDDS(TSI.DDS dds, int DDSIndex)
         {
-            tsi.listDDS[DDSIndex]=dds;
+            tsi.listDDS[DDSIndex] = dds;
             TSItree.Nodes[DDSIndex].Name = dds.Path;
             TSItree.Nodes[DDSIndex].Text = dds.Path;
             TSItree.Nodes[DDSIndex].Nodes.Clear();
 
-            dds.ListDDS_element.ForEach(delegate (TSI.DDS.DDSElement element)
+            dds.ListDDS_element.ForEach(delegate(TSI.DDS.DDSElement element)
             {
                 DevComponents.AdvTree.Node newElementNode = new DevComponents.AdvTree.Node();
                 newElementNode.Name = element.Name;
@@ -270,24 +288,62 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
         {
             TSItree.Nodes[DDSIndex].Name = tsi.listDDS[DDSIndex].Path;
             TSItree.Nodes[DDSIndex].Text = tsi.listDDS[DDSIndex].Path;
-            
+
             Sprite DDSSprite = SpriteManager.Instance().GetSprite(tsi.listDDS[DDSIndex].Path);
             renderControl.ClearSprites();
             renderControl.AddSprite(DDSSprite);
+        }
+
+        public void SetMouseType(MouseType mType)
+        {
+            mouseType = mType;
         }
         #endregion
         #endregion
 
         #region Event
-        private new void MouseMove(object sender, EventArgs e)
+        private new void MouseMove(object sender, MouseEventArgs e)
         {
-            /*System.Drawing.Point MousePosition = renderControl.PointToClient(Cursor.Position);
-            SpriteFont font = this.renderControl.Content.Load<SpriteFont>("Arial");
-            Text text = new Text(this.renderControl.GraphicsDevice);
-            text.Set(MousePosition.X + "," + MousePosition.Y, new Vector2(0, 0), font, Color.Red);
-            this.renderControl.ClearTexts();
-            this.renderControl.AddText(text);*/
-
+            System.Drawing.Point MousePosition = renderControl.PointToClient(Cursor.Position);
+            positionText.Set(MousePosition.X + "," + MousePosition.Y, new Vector2(0, 0), font, Color.Red);
+            if(resizing==true)
+            {
+                if (mouseType == MouseType.MOUSE_POINT)
+                {
+                    if (TSItree.SelectedNode.Level == 1)
+                    {
+                        if((e.X - tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].X > 0) && (e.Y - tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].Y >0))
+                        {
+                        tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].Width = e.X - tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].X;
+                        tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].Height = e.Y - tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].Y;
+                        ElementChanged(TSItree.SelectedNode.Parent.Index, TSItree.SelectedNode.Index);
+                        }
+                    }
+                }
+            }
+        }
+        private new void MouseUp(object sender, MouseEventArgs e)
+        {
+            if (mouseType == MouseType.MOUSE_POINT)
+            {
+                if (TSItree.SelectedNode.Level == 1)
+                {
+                    resizing = false;
+                }
+            }
+        }
+        private new void MouseDown(object sender, MouseEventArgs e)
+        {
+            if (mouseType == MouseType.MOUSE_POINT)
+            {
+                if (TSItree.SelectedNode.Level == 1)
+                {
+                    tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].X = e.X;
+                    tsi.listDDS[TSItree.SelectedNode.Parent.Index].ListDDS_element[TSItree.SelectedNode.Index].Y = e.Y;
+                    ElementChanged(TSItree.SelectedNode.Parent.Index, TSItree.SelectedNode.Index);
+                    resizing = true;
+                }
+            }
         }
         #endregion
     }

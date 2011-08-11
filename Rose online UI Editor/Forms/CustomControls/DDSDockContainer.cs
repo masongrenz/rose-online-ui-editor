@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Rose_online_UI_Editor.Content_Manager;
+using Rose_online_UI_Editor.Mouse;
 
 using System.Windows.Media.Imaging;
 namespace Rose_online_UI_Editor.Forms.CustomControls
@@ -86,6 +87,11 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
             Load(DDSPath);
         }
         public void Save()
+        {
+            //nothing here :p
+        }
+
+        public void SetMouseType(MouseType mType)
         {
             //nothing here :p
         }

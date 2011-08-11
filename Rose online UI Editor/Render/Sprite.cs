@@ -13,11 +13,13 @@ namespace Rose_online_UI_Editor.Render
         public Vector2 position { get; set; }        
         public Rectangle sourceRectangle { get; set; }
         private bool using_sourceRectangle;
+        public bool Drawing { get; set; }
         #endregion
 
         #region constructor
         public Sprite()
-        {            
+        {
+            Drawing = true;
             using_sourceRectangle = false;
         }
         #endregion
@@ -46,11 +48,13 @@ namespace Rose_online_UI_Editor.Render
         {
             if (!using_sourceRectangle)
             {
+                if (Drawing)
                 spriteBatch.Draw(texture, position, Color.White);
             }
 
             else
             {
+                if (Drawing)
                 spriteBatch.Draw(texture, position, this.sourceRectangle, Color.White);
             }
         }
