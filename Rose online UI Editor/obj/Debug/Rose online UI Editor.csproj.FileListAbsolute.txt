@@ -1,0 +1,36 @@
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\bin\Debug\Rose online UI Editor.exe
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\bin\Debug\Rose online UI Editor.pdb
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.MainForm.resources
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.Properties.Resources.resources
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.csproj.GenerateResource.Cache
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.exe
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.pdb
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Project1\Project1\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.NewFileForm.resources
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.exe
+C:\Users\Jean\Documents\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.pdb
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.exe
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.pdb
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\bin\Debug\Rose online UI Editor.exe
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\bin\Debug\Rose online UI Editor.pdb
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\bin\Debug\DevComponents.DotNetBar2.xml
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\ResolveAssemblyReference.cache
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.MainForm.resources
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.NewFileForm.resources
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.Properties.Resources.resources
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\GenerateResource-ResGen.read.1.tlog
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\GenerateResource-ResGen.read.4.tlog
+D:\OLD\Visual Studio 2008\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.exe
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose online UI Editor.pdb
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\bin\Debug\Rose online UI Editor.exe
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\bin\Debug\Rose online UI Editor.pdb
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\bin\Debug\DevComponents.DotNetBar2.xml
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.Properties.Resources.resources
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\GenerateResource-ResGen.read.4.tlog
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.Forms.MainForm.resources
+C:\Users\Jean\Documents\Visual Studio 2010\Projects\Rose online UI Editor\Rose online UI Editor\obj\Debug\Rose_online_UI_Editor.Forms.NewFileForm.resources
