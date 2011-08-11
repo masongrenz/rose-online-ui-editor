@@ -1,0 +1,48 @@
+﻿***************************************************************************************************************************************
+Rajouter un content manager ==> Fini
+***************************************************************************************************************************************
+Utiliser le content manager
+***************************************************************************************************************************************
+Utiliser des delegates \ events
+***************************************************************************************************************************************
+Utiliser mes derniers files handlers (pas ceux de xadets ISavable , IReadable) ==> Fini
+***************************************************************************************************************************************
+Créer une interface ICustomControl avec comme fonction obligatoire Save , Load , Draw etc... ==> a moitié Fini
+***************************************************************************************************************************************
+Faire en sorte que chaque ROSE control gère lui même son chargement (image) et son affichage ainsi que ces autres fonctionalités
+***************************************************************************************************************************************
+Revoir ma manière de gérer les logs (que ce soit accessible par tous) :
+-faire une classe logs avec une méthode static Log(string message)
+-faire une méthode pour définir dans quel control on veut l'utliser 
+==> Fini
+***************************************************************************************************************************************
+Revoir ma manière de gérer le xml (DOM)
+XPathDocument 
+Générer un Navigator ==> XPathDocument::CreateNavigator(); ==> Fini
+***************************************************************************************************************************************
+Undo\Redo :
+Faire une interface Command
+Exec
+UnExec
+
+Créer des commands pour chaques actions possibles par l'utilisateur
+Faire une pile des commandes :
+Do 
+Undo
+
+Chaques contrôle aura sa pile de commandes ainsi que ces commandes spécifiques
+FAIT!!!!!
+A faire : afficher un historique des commands et donc rajouter dans ICommand une fonction string GetInformation() qui donne des informations sur la commande
+***************************************************************************************************************************************
+Faire charger toutes les textures possibles dans le content manager et créer tous les sprites possibles a partir des TSIs (==> spriteManager)
+class TSI ==> ajout de generateSprites. A moitié finis
+***************************************************************************************************************************************
+Mainform :
+faire une partial classe pour chaques CustomControl(xml , tsi , ui , dds) avec tout les événements géré dedans
+**************************************************************************************************************************************
+DDSDockContainer == fini
+**************************************************************************************************************************************
+Trouver une autre manière de mettre le SpriteManager a jour!!!
+**************************************************************************************************************************************
+faire 
+**************************************************************************************************************************************
