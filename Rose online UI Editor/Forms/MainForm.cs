@@ -282,7 +282,7 @@ for exemple C:\Game\Rose Online";
                 pasteTreeTSIMenuItem.Enabled = true;
                 TSIDockContainer selectedTSIDockContainer = (TSIDockContainer)MainBar.SelectedDockContainerItem;                                               
                 selectedTSIDockContainer.SelectDDS(e.Node.Index);   
-                oldSelectedObject = selectedTSIDockContainer.GetDDS(e.Node.Index).
+               // oldSelectedObject = selectedTSIDockContainer.GetDDS(e.Node.Index).
             }
             if (e.Node.Level == 1)
             {

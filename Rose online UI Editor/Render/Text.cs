@@ -12,8 +12,11 @@ namespace Rose_online_UI_Editor.Render
         private Vector2 position;
         private Color color;
         private SpriteFont font;
+        public bool Drawing { get; set; }
+
         public Text(GraphicsDevice gDevice)
        {
+           Drawing = true;
            this.graphicsDevice = gDevice;
        
        }
@@ -27,6 +30,7 @@ namespace Rose_online_UI_Editor.Render
             
         public void Draw(SpriteBatch spritebatch)
         {
+            if (Drawing)
             spritebatch.DrawString(font, text, position, color);
         }
     }

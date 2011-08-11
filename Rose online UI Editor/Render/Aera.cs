@@ -11,9 +11,11 @@ namespace Rose_online_UI_Editor.Render
         public Color[] color { get; set; }
         private Texture2D texture;
         public GraphicsDevice graphicsDevice { get; set; }
-        
+        public bool Drawing { get; set; }
+
         public Aera(GraphicsDevice gDevice , Rectangle rect , Color col)
         {
+         Drawing = true;
         this.graphicsDevice = gDevice;
         this.rectangle = rect;
          
@@ -52,6 +54,7 @@ namespace Rose_online_UI_Editor.Render
                    
         public void Draw(SpriteBatch spriteBatch)
         {
+            if (Drawing)
             spriteBatch.Draw(texture, new Vector2( rectangle.X,rectangle.Y),Color.White);
             
         }

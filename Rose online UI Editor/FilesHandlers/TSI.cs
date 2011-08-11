@@ -141,14 +141,14 @@ namespace Rose_online_UI_Editor.Files_Handlers
         #endregion
 
         #region sub classes DDS
-        public class DDS : ICloneable
+        public class DDS //: ICloneable
         {
             #region Constructors
             public DDS()
             {
                 ListDDS_element = new List<DDSElement>();
             }
-            public object Clone()
+            /*public object Clone()
             {
                 DDS newDDS = this.MemberwiseClone() as DDS;
                 Array tmp;
@@ -156,7 +156,7 @@ namespace Rose_online_UI_Editor.Files_Handlers
                 newDDS.ListDDS_element = new List<DDSElement>(tmp);
                
                 return 
-            }
+            }*/
             #endregion
 
             #region Variables
@@ -173,7 +173,7 @@ namespace Rose_online_UI_Editor.Files_Handlers
             #endregion
 
             #region sub classes DDSElement
-            public class DDSElement : ICloneable
+            public class DDSElement //: ICloneable
             {
                 public DDSElement()
                 {

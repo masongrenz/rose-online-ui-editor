@@ -21,7 +21,7 @@ namespace Rose_online_UI_Editor.Content_Manager
         static ContentManager currentInstance;
         static GraphicsDevice device;
         public const string resFolderPartialPath = "\\3DDATA\\CONTROL\\RES";
-        public const string xmlFolderPartialPath = "\\3DDATA\\CONTROL\\RES";
+        public const string xmlFolderPartialPath = "\\3DDATA\\CONTROL\\XML";
         #endregion 
         #region variables        
         Hashtable Textures;

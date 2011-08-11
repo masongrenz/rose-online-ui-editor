@@ -91,14 +91,17 @@ namespace Rose_online_UI_Editor.Forms.CustomControls.GraphicsDeviceControl
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Immediate, SaveStateMode.None,cam.get_transformation(this.GraphicsDevice));
             for (int i = 0; i != listSprite.Count; i++)
             {
+               if(listSprite[i] != null)
                 listSprite[i].Draw(this.spriteBatch);
             }
             for (int i = 0; i != listAera.Count; i++)
             {
+                if(listAera[i] != null)
                 listAera[i].Draw(this.spriteBatch);
             }
             for (int i = 0; i != listText.Count; i++)
             {
+                if(listText[i] != null)
                 listText[i].Draw(this.spriteBatch);
             }
             spriteBatch.End();
@@ -137,7 +140,7 @@ namespace Rose_online_UI_Editor.Forms.CustomControls.GraphicsDeviceControl
             _transform =  Matrix.CreateTranslation(new Vector3(-_pos.X, -_pos.Y, 0)) *
                                          Matrix.CreateRotationZ(_rotation) *
                                          Matrix.CreateScale(new Vector3(Zoom, Zoom, 0)) *
-                                         Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width /2 , graphicsDevice.Viewport.Height /2, 0));
+                                         Matrix.CreateTranslation(new Vector3(0, 0, 0));
             return _transform;
         }
     }

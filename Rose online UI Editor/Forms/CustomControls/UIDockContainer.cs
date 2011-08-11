@@ -10,6 +10,7 @@ using Rose_online_UI_Editor.Forms.CustomControls.GraphicsDeviceControl;
 
 using Rose_online_UI_Editor.Render;
 using Rose_online_UI_Editor.RoseControls;
+using Rose_online_UI_Editor.Mouse;
 #endregion
 
 namespace Rose_online_UI_Editor.Forms.CustomControls
@@ -103,6 +104,10 @@ namespace Rose_online_UI_Editor.Forms.CustomControls
             public void SetZoom(float zoom)
             {
             this.renderControl.cam.Zoom = zoom;
+            }
+            public void SetMouseType(MouseType mType)
+            {
+                
             }
             #endregion
 
